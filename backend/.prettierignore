@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+
+# Build / output directories
+dist
+build
+coverage
+logs
+
+# Environment files
+.env
+.env.* 
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Public / static assets
+public/*
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.mp4
+*.mp3
+
+# Generated files
+*.min.js
+*.bundle.js
+
+# IDE / system files
+.vscode
+.DS_Store

@@ -16,8 +16,8 @@ import notificationsRoutes from './routes/notifications.routes.js';
 // Middleware
 import limiter from './middleware/rate-limiter.middleware.js';
 import errorHandler from './middleware/error.middleware.js';
-import notFound from './middleware/not-Found.middleware.js';
-import morganLogger from './middleware/morgan-Logger.middleware.js';
+import notFound from './middleware/not-found.middleware.js';
+import morganLogger from './middleware/morgan-logger.middleware.js';
 import logger from './config/logger.config.js';
 import configEnv from './config/env.config.js';
 

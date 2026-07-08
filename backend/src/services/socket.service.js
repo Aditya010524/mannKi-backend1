@@ -202,3 +202,13 @@ io.on('connection', (socket) => {
 });
 
 export { io, app, server };
+
+export const socketService = {
+  io,
+  getReceiverSocketId,
+  emitNotification,
+  emitNotificationRemoved,
+  emitUnreadCount,
+  getOnlineContactsForUser,
+  getOnlineUsersCount: () => Object.keys(userSocketMap).length,
+};

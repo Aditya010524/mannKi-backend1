@@ -1,98 +1,92 @@
 // src/config/env.js
 import { config } from 'dotenv';
-import Joi from 'joi';
 import path from 'path';
 
-// ------------------------------
 // Load .env.* file
-// ------------------------------
 const nodeEnv = process.env.NODE_ENV || 'development';
-
-// We only load `.env.{NODE_ENV}`
 const envFile = `.env.${nodeEnv}`;
 
-config({ path: path.resolve(process.cwd(), envFile) });
+console.log('🔧 [ENV LOADER] Starting environment configuration...');
+console.log(`🔧 [ENV LOADER] NODE_ENV: ${nodeEnv}`);
+console.log(`🔧 [ENV LOADER] Loading env file: ${envFile}`);
 
-// ------------------------------
-// Joi Schema Validation
-// ------------------------------
-const envSchema = Joi.object({
-  NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
-
-  // Server
-  PORT: Joi.number().default(5000),
-  API_PREFIX: Joi.string().default('/api/v1'),
-  DOCS_URL: Joi.string().default('/api/v1/docs'),
-  ENABLE_DOCS: Joi.boolean().default(false),
-  HEALTH_CHECK_DETAILED: Joi.boolean().default(true),
-
-  // Database
-  MONGODB_URI: Joi.string().uri().required(),
-  // MONGODB_TEST_URI: Joi.string().uri().optional(),
-
-  // JWT
-  JWT_ACCESS_SECRET: Joi.string().min(20).required(),
-  JWT_ACCESS_EXPIRE: Joi.string().default('15m'),
-  JWT_REFRESH_SECRET: Joi.string().min(20).required(),
-  JWT_REFRESH_EXPIRE: Joi.string().default('7d'),
-
-  // Redis (optional)
-  REDIS_URL: Joi.string().uri().optional(),
-
-  // Email
-  EMAIL_HOST: Joi.string().optional(),
-  EMAIL_PORT: Joi.number().optional(),
-  EMAIL_USER: Joi.string().optional(),
-  EMAIL_PASS: Joi.string().optional(),
-  FROM_EMAIL: Joi.string().email().optional(),
-
-  // File upload
-  MAX_FILE_SIZE: Joi.number().default(5 * 1024 * 1024), // 5 MB
-  UPLOAD_PATH: Joi.string().default('./uploads'),
-
-  // Cloudinary (for dev)
-  CLOUDINARY_CLOUD_NAME: Joi.string().optional(),
-  CLOUDINARY_API_KEY: Joi.string().optional(),
-  CLOUDINARY_API_SECRET: Joi.string().optional(),
-
-  // Rate limiting
-  RATE_LIMIT_WINDOW: Joi.number().default(15), // minutes
-  RATE_LIMIT_MAX: Joi.number().default(100),
-
-  // Security
-  BCRYPT_ROUNDS: Joi.number().default(12),
-  CORS_ORIGIN: Joi.string().default('http://localhost:5173'),
-  FRONTEND_URL: Joi.string().uri().optional(),
-  BACKEND_URL: Joi.string().uri().optional(),
-
-  // Logging
-  LOG_LEVEL: Joi.string().valid('error', 'warn', 'info', 'debug').default('info'),
-  LOG_PATH: Joi.string().optional(),
-
-  // Default profile image
-  DEFAULT_PROFILE_URL: Joi.string().uri().optional(),
-  DEFAULT_COVER_URL: Joi.string().uri().optional(),
-}).unknown(true);
-
-// ------------------------------
-// Validate & Clean
-// ------------------------------
-const { value: env, error } = envSchema.validate(process.env, {
-  abortEarly: false,
-  allowUnknown: true,
-  stripUnknown: true,
-});
-
-if (error) {
-  error.details.forEach((err) => {
-    console.error(`❌ Invalid env var: ${err.message}`);
-  });
-  process.exit(1);
+const loadResult = config({ path: path.resolve(process.cwd(), envFile) });
+console.log(`🔧 [ENV LOADER] Config loaded: ${loadResult.error ? '❌ ERROR' : '✅ SUCCESS'}`);
+if (loadResult.error) {
+  console.error(`🔧 [ENV LOADER] Error: ${loadResult.error.message}`);
 }
 
-// ------------------------------
-// Structured Export
-// ------------------------------
+// Parse and provide safe defaults for environment variables
+const env = {
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  PORT: parseInt(process.env.PORT, 10) || 5000,
+  API_PREFIX: process.env.API_PREFIX || '/api/v1',
+  DOCS_URL: process.env.DOCS_URL || '/api/v1/docs',
+  ENABLE_DOCS: process.env.ENABLE_DOCS === 'true',
+  HEALTH_CHECK_DETAILED: process.env.HEALTH_CHECK_DETAILED !== 'false',
+
+  // Database
+  MONGODB_URI: process.env.MONGODB_URI,
+  MONGODB_TEST_URI: process.env.MONGODB_TEST_URI || null,
+
+  // JWT
+  JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET,
+  JWT_ACCESS_EXPIRE: process.env.JWT_ACCESS_EXPIRE || '15m',
+  JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
+  JWT_REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || '7d',
+
+  // Redis (optional)
+  REDIS_URL: process.env.REDIS_URL || null,
+
+  // Email (Brevo)
+  BREVO_API_KEY: process.env.BREVO_API_KEY || null,
+  FROM_EMAIL: process.env.FROM_EMAIL || null,
+
+  // File upload
+  MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE, 10) || 5 * 1024 * 1024,
+  UPLOAD_PATH: process.env.UPLOAD_PATH || './uploads',
+
+  // Cloudinary (for dev)
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || null,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || null,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || null,
+
+  // Rate limiting
+  RATE_LIMIT_WINDOW: parseInt(process.env.RATE_LIMIT_WINDOW, 10) || 15,
+  RATE_LIMIT_MAX: parseInt(process.env.RATE_LIMIT_MAX, 10) || 100,
+
+  // Security
+  BCRYPT_ROUNDS: parseInt(process.env.BCRYPT_ROUNDS, 10) || 12,
+  CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  FRONTEND_URL: process.env.FRONTEND_URL || null,
+  BACKEND_URL: process.env.BACKEND_URL || null,
+
+  // Logging
+  LOG_LEVEL: process.env.LOG_LEVEL || 'info',
+  LOG_PATH: process.env.LOG_PATH || null,
+
+  // Default images
+  DEFAULT_PROFILE_URL: process.env.DEFAULT_PROFILE_URL || null,
+  DEFAULT_COVER_URL: process.env.DEFAULT_COVER_URL || null,
+};
+
+// Validate critical variables
+if (!env.MONGODB_URI) {
+  throw new Error('❌ MONGODB_URI is required in environment variables');
+}
+if (!env.JWT_ACCESS_SECRET) {
+  throw new Error('❌ JWT_ACCESS_SECRET is required in environment variables');
+}
+if (!env.JWT_REFRESH_SECRET) {
+  throw new Error('❌ JWT_REFRESH_SECRET is required in environment variables');
+}
+
+// Log EMAIL config
+console.log('📧 [EMAIL CONFIG] Loaded from environment:');
+console.log(`   BREVO_API_KEY: ${env.BREVO_API_KEY ? '✅ Set (' + env.BREVO_API_KEY.length + ' chars)' : '❌ Not set'}`);
+console.log(`   FROM_EMAIL: ${env.FROM_EMAIL || '❌ Not set'}`);
+
+// Structured export without Joi validation
 const configEnv = {
   NODE_ENV: env.NODE_ENV,
   IS_PROD: env.NODE_ENV === 'production',
@@ -117,36 +111,24 @@ const configEnv = {
 
   SECURITY: {
     BCRYPT_ROUNDS: env.BCRYPT_ROUNDS,
-    // ["http://localhost:5173", "https://myapp.com"]
     CORS_ORIGIN: env.CORS_ORIGIN.split(',').map((o) => o.trim()),
     FRONTEND_URL: env.FRONTEND_URL,
     BACKEND_URL: env.BACKEND_URL,
   },
 
   EMAIL: {
-    HOST: env.EMAIL_HOST,
-    PORT: env.EMAIL_PORT,
-    USER: env.EMAIL_USER,
-    PASS: env.EMAIL_PASS,
+    API_KEY: env.BREVO_API_KEY,
     FROM: env.FROM_EMAIL,
   },
 
   UPLOAD: {
     MAX_FILE_SIZE: env.MAX_FILE_SIZE,
     PATH: env.UPLOAD_PATH,
-
-    // dev → Cloudinary | prod → AWS
     CLOUDINARY: {
       CLOUD_NAME: env.CLOUDINARY_CLOUD_NAME,
       API_KEY: env.CLOUDINARY_API_KEY,
       API_SECRET: env.CLOUDINARY_API_SECRET,
     },
-    // AWS: {
-    //   BUCKET_NAME: env.AWS_BUCKET_NAME,
-    //   ACCESS_KEY_ID: env.AWS_ACCESS_KEY_ID,
-    //   SECRET_ACCESS_KEY: env.AWS_SECRET_ACCESS_KEY,
-    //   REGION: env.AWS_REGION,
-    // },
   },
 
   RATE_LIMIT: {

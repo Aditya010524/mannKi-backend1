@@ -1651,3 +1651,276 @@
     at ApiError.conflict (file:///D:/myprojects/Twitter-Clone-1/backend/src/utils/api-error.js:36:12)
     at file:///D:/myprojects/Twitter-Clone-1/backend/src/controllers/auth.controller.js:25:24
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 03:34:25 [ERROR]: Error: Route /api/v1 not found
+    at ApiError.notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:32:12)
+    at notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/not-found.middleware.js:15:17)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:646:15
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:265:14)
+    at Function.handle (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:175:3)
+2026-07-09 03:34:25 [ERROR]: Error: Route /favicon.ico not found
+    at ApiError.notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:32:12)
+    at notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/not-found.middleware.js:15:17)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:328:13)
+2026-07-09 03:34:36 [ERROR]: Error: Route /api/v1/health not found
+    at ApiError.notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:32:12)
+    at notFound (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/not-found.middleware.js:15:17)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:646:15
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:265:14)
+    at Function.handle (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:175:3)
+2026-07-09 03:39:10 [ERROR]: Error: Validation failed
+    at ApiError.validation (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:40:19)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:24:22
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:175:3)
+2026-07-09 03:39:22 [ERROR]: Error: Username is already taken
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:25:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 03:39:32 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a56848sm24667616eec.16 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 03:39:32 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:33:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 03:39:32 [ERROR]: Unhandled error type
+2026-07-09 03:48:17 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3119d5cf176sm2863484eec.12 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 03:48:17 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:33:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 03:48:17 [ERROR]: Unhandled error type
+2026-07-09 10:02:09 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 10:02:23 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f598dsm26948146eec.6 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 10:02:23 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:33:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 10:02:23 [ERROR]: Unhandled error type
+2026-07-09 10:03:43 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 10:03:49 [ERROR]: Error: Username is already taken
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:25:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 10:03:59 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117483dec6sm26471317eec.11 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 10:03:59 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:33:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 10:03:59 [ERROR]: Unhandled error type
+2026-07-09 10:04:24 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f5975sm24396851eec.4 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 10:04:24 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:33:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 10:04:24 [ERROR]: Unhandled error type
+2026-07-09 10:14:18 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 10:14:24 [ERROR]: Error: Username is already taken
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:25:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 10:14:32 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659666e7sm31737531c88.7 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 10:14:32 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 10:14:32 [ERROR]: Unhandled error type
+2026-07-09 12:21:17 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm24938486eec.18 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 12:21:17 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 12:21:17 [ERROR]: Unhandled error type
+2026-07-09 12:21:41 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm29586372c88.1 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 12:21:41 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 12:21:41 [ERROR]: Unhandled error type
+2026-07-09 12:41:37 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-09 12:48:01 [ERROR]: Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6596681fsm32132491c88.8 - gsmtp
+    at SMTPConnection._formatError (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:814:19)
+    at SMTPConnection._actionAUTHComplete (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1622:34)
+    at SMTPConnection.<anonymous> (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+    at SMTPConnection._processResponse (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:998:20)
+    at SMTPConnection._onData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+2026-07-09 12:48:01 [ERROR]: Error: Email sending failed
+    at EmailService.sendMail (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/email.service.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:49:5
+2026-07-09 12:48:01 [ERROR]: Unhandled error type
+2026-07-09 13:00:33 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-10 10:57:11 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:125:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-10 10:57:11 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-10 10:58:01 [ERROR]: Error: Email is already registered
+    at ApiError.conflict (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:36:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:22:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-10 11:03:15 [ERROR]: Error: Validation failed
+    at ApiError.validation (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:40:19)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:24:22
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/auth.middleware.js:60:3
+2026-07-11 01:23:51 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:131:22
+2026-07-11 01:23:51 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)

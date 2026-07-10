@@ -30,9 +30,13 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: configEnv.SECURITY.CORS_ORIGIN,
-    // origin: configEnv.SECURITY.FRONTEND_URL,
+    origin: function (origin, callback) {
+      // Allow all origins for mobile apps and web clients
+      callback(null, true);
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   })
 );
 app.use(compression());

@@ -366,6 +366,96 @@ class AuthService {
     }
   }
 
+  // ✅ Create forgot password OTP
+  async createForgotPasswordOtp(userId) {
+    try {
+      // Invalidate any existing active forgot password OTPs
+      await AuthToken.updateMany(
+        { userId, type: 'forgot_password_otp', isActive: true },
+        { $set: { isActive: false, revokedAt: new Date() } }
+      );
+
+      // Generate 6-digit numeric OTP
+      const otp = crypto.randomInt(100000, 1000000).toString(); // 100000–999999
+
+      // Hash it for database storage
+      const hashedToken = crypto.createHash('sha256').update(otp).digest('hex');
+
+      // Save to database with short expiry (e.g., 10 minutes)
+      const tokenRecord = new AuthToken({
+        userId,
+        token: hashedToken,
+        type: 'forgot_password_otp',
+        expiresAt: new Date(Date.now() + 10 * 60 * 1000), // 10 minutes
+      });
+
+      await tokenRecord.save();
+
+      // Return the raw OTP (to send via email)
+      return otp;
+    } catch (error) {
+      logger.error('Failed to create forgot password OTP:', error);
+      throw ApiError.internal('Could not create password reset code');
+    }
+  }
+
+  // ✅ Verify forgot password OTP
+  async verifyForgotPasswordOtp(email, otp) {
+    try {
+      // Hash the provided OTP
+      const hashedToken = crypto.createHash('sha256').update(otp).digest('hex');
+
+      // Find the user by email
+      const user = await User.findOne({ email: email.toLowerCase() });
+      if (!user) {
+        throw ApiError.notFound('User not found');
+      }
+
+      // Find matching token in database
+      const tokenRecord = await AuthToken.findOne({
+        userId: user._id,
+        token: hashedToken,
+        type: 'forgot_password_otp',
+        isActive: true,
+        expiresAt: { $gt: new Date() },
+      });
+
+      if (!tokenRecord) {
+        throw ApiError.badRequest('Invalid or expired verification code');
+      }
+
+      // Mark token as used
+      tokenRecord.isActive = false;
+      tokenRecord.revokedAt = new Date();
+      await tokenRecord.save();
+
+      // Generate password reset token for actual password change
+      const resetToken = crypto.randomBytes(32).toString('hex');
+      const hashedResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+      // Save password reset token to database
+      const resetTokenRecord = new AuthToken({
+        userId: user._id,
+        token: hashedResetToken,
+        type: 'password_reset',
+        expiresAt: new Date(Date.now() + 30 * 60 * 1000), // 30 minutes
+      });
+
+      await resetTokenRecord.save();
+
+      return {
+        userId: user._id,
+        resetToken: resetToken, // Return unhashed token to client
+      };
+    } catch (error) {
+      if (error instanceof ApiError) {
+        throw error;
+      }
+      logger.error('Forgot password OTP verification failed:', error);
+      throw ApiError.internal('Could not verify password reset code');
+    }
+  }
+
   // Helper: Detect device type from user agent
   getDeviceType(userAgent) {
     if (!userAgent) return 'Unknown Device';

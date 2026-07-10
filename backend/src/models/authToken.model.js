@@ -24,7 +24,7 @@ const authTokenSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      enum: ['refresh', 'access', 'email_verification', 'password_reset'],
+      enum: ['refresh', 'access', 'email_verification', 'password_reset', 'forgot_password_otp'],
       required: [true, 'Token type is required'],
     },
 

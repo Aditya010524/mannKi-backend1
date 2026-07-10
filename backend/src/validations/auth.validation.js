@@ -98,6 +98,23 @@ const authValidation = {
       'any.required': 'Email is required',
     }),
   }),
+
+  // Verify Forgot Password OTP
+  verifyForgotPasswordOtp: Joi.object({
+    email: Joi.string().email().lowercase().required().messages({
+      'string.email': 'Please provide a valid email address',
+      'any.required': 'Email is required',
+    }),
+    otp: Joi.string()
+      .length(6)
+      .pattern(/^[0-9]+$/)
+      .required()
+      .messages({
+        'string.length': 'Verification code must be 6 digits',
+        'string.pattern.base': 'Verification code must contain only digits',
+        'any.required': 'Verification code is required',
+      }),
+  }),
 };
 
 export default authValidation;

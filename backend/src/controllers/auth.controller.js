@@ -209,7 +209,7 @@ class AuthController {
     });
   });
 
-  // Forgot password
+  // Forgot password - Request OTP
   forgotPassword = asyncHandler(async (req, res) => {
     const { email } = req.body;
 
@@ -217,7 +217,7 @@ class AuthController {
 
     if (!user) {
       return ApiResponse.success(res, {
-        message: 'If this email is registered, you will receive a password reset link.',
+        message: 'If this email is registered, you will receive a password reset code.',
       });
     }
 
@@ -225,16 +225,51 @@ class AuthController {
       throw ApiError.unauthorized('Account has been deactivated');
     }
 
-    const resetToken = await authService.createPasswordResetToken(user._id);
+    // Generate forgot password OTP
+    const forgotPasswordOtp = await authService.createForgotPasswordOtp(user._id);
 
-    await emailService.sendPasswordResetEmail(user.email, resetToken, user.displayName);
+    // Send OTP via email
+    await emailService.sendForgotPasswordOtpEmail(user.email, forgotPasswordOtp, user.displayName);
 
-    logger.info(`Password reset requested for: ${user.email}`);
+    logger.info(`Password reset OTP requested for: ${user.email}`);
 
     return ApiResponse.success(res, {
-      message: 'If this email is registered, you will receive a password reset link.',
-      resetLink: 'Reset Password on Routes -> /reset-password',
-      passwordResetToken: resetToken,
+      message: 'If this email is registered, you will receive a password reset code.',
+      // ⚠️ Dev only: remove this in production
+      forgotPasswordOtp: forgotPasswordOtp,
+    });
+  });
+
+  // Verify forgot password OTP and get reset token
+  verifyForgotPasswordOtp = asyncHandler(async (req, res) => {
+    const { email, otp } = req.body;
+
+    if (!otp) {
+      throw ApiError.badRequest('Verification code is required');
+    }
+
+    if (!email) {
+      throw ApiError.badRequest('Email is required');
+    }
+
+    // Verify the forgot password OTP
+    const { userId, resetToken } = await authService.verifyForgotPasswordOtp(email, otp);
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw ApiError.notFound('User not found');
+    }
+
+    logger.info(`Forgot password OTP verified for user: ${user.email}`);
+
+    return ApiResponse.success(res, {
+      message: 'Verification code verified successfully. You can now reset your password.',
+      resetToken, // Client uses this to reset password
+      user: {
+        id: user._id,
+        email: user.email,
+      },
     });
   });
 

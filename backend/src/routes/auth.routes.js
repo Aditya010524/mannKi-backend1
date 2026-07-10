@@ -19,11 +19,18 @@ router.post('/refresh', validate(authValidation.refresh), authController.refresh
 // Verify email
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
 
-// Request password reset
+// Request password reset (OTP)
 router.post(
   '/forgot-password',
   validate(authValidation.forgotPassword),
   authController.forgotPassword
+);
+
+// Verify forgot password OTP
+router.post(
+  '/verify-forgot-password-otp',
+  validate(authValidation.verifyForgotPasswordOtp),
+  authController.verifyForgotPasswordOtp
 );
 
 // Reset password

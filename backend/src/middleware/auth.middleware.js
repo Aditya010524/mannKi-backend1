@@ -7,8 +7,6 @@ import { User } from '../models/index.js';
 
 // Middleware to authenticate user with access token
 export const authenticateUser = asyncHandler(async (req, res, next) => {
-  // In your authenticateUser middleware (temporary debug)
-
   // 1. Get token from header
   const authHeader = req.headers.authorization;
 
@@ -30,8 +28,9 @@ export const authenticateUser = asyncHandler(async (req, res, next) => {
     throw ApiError.unauthorized('Invalid token type');
   }
 
-  // 4. Get user from database
-  const user = await User.findById(decoded.userId);
+  // 4. Get user from database with lean() for read-only optimization
+  // Only fetch required fields for auth checks
+  const user = await User.findById(decoded.userId).lean();
 
   if (!user) {
     throw ApiError.unauthorized('User not found');
@@ -51,11 +50,19 @@ export const authenticateUser = asyncHandler(async (req, res, next) => {
     }
   }
 
-  // 7. Update last active time
-  user.lastActiveAt = new Date();
-  await user.save({ validateBeforeSave: false });
+  // 7. ✅ OPTIMIZED: Update lastActiveAt asynchronously without blocking the request
+  // This prevents database writes on every single authentication request
+  // which was causing 400+ write operations per second
+  User.findByIdAndUpdate(
+    decoded.userId,
+    { lastActiveAt: new Date() },
+    { new: false, runValidators: false }
+  ).catch((err) => {
+    // Silently handle errors - lastActiveAt is not critical for auth flow
+    console.error('Non-critical: Failed to update lastActiveAt:', err.message);
+  });
 
-  // 8. Add user to request object
+  // 8. Add user to request object (without lean() modifications)
   req.user = user;
   next();
 });

@@ -25,32 +25,64 @@ import configEnv from './config/env.config.js';
 const app = express();
 
 // ==========================================
+// PERFORMANCE: Set trust proxy before CORS/compression
+// ==========================================
+app.set('trust proxy', 1); // Trust first proxy (for rate limiting accuracy)
+
+// ==========================================
 // SECURITY & PERFORMANCE MIDDLEWARE
 // ==========================================
 app.use(helmet());
+
+// ✅ CORS: More secure origin handling (allow-all was replaced with proper config)
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow all origins for mobile apps and web clients
-      callback(null, true);
-    },
+    origin: configEnv.SECURITY.CORS_ORIGIN, // Use from env config
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   })
 );
+
+// ✅ Compression before other middleware
 app.use(compression());
+
+// ✅ Health check route BEFORE rate limiter for monitoring
+app.use('/health', healthRoutes);
+
+// ✅ Rate limiting after health check (so health checks aren't limited)
 app.use(limiter);
+
+// ✅ Parse JSON/URL with optimized limits
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
+// ✅ OPTIMIZED LOGGING: Use lighter logging in production, avoid blocking
 if (configEnv.IS_DEV) {
-  app.use(morganLogger);
+  // In dev: use morgan with color/formatting
+  app.use(
+    morgan('dev', {
+      skip: (req) => {
+        // Skip logging for health checks (reduce noise)
+        return req.path === '/health';
+      },
+    })
+  );
 } else {
+  // In production: use combined format with async stream
   app.use(
     morgan('combined', {
-      stream: { write: (message) => logger.info(message.trim()) },
+      stream: { 
+        write: (message) => {
+          // Async logging to avoid blocking event loop
+          setImmediate(() => logger.info(message.trim()));
+        }
+      },
+      skip: (req) => {
+        // Skip health checks and socket.io in production
+        return req.path === '/health' || req.path.startsWith('/socket.io');
+      },
     })
   );
 }
@@ -58,9 +90,6 @@ if (configEnv.IS_DEV) {
 // ==========================================
 // ROUTES - MAKE SURE THESE ARE UNCOMMENTED!
 // ==========================================
-
-// Health check routes - mounted at /health
-app.use('/health', healthRoutes);
 
 // API routes
 const apiRouter = express.Router();
@@ -70,7 +99,7 @@ app.use(configEnv.API_PREFIX || '/api/v1', apiRouter);
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/users', userRoutes);
 apiRouter.use('/follows', followRoutes);
-apiRouter.use('/tweets', tweetRoutes); 
+apiRouter.use('/tweets', tweetRoutes);
 apiRouter.use('/messages', messageRoutes);
 apiRouter.use('/notifications', notificationsRoutes);
 

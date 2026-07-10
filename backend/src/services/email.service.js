@@ -200,6 +200,31 @@ This link expires in 10 minutes.
 
     return this.sendMail({ to: email, subject, text, html });
   }
+
+  // ✅ Forgot password OTP email
+  async sendForgotPasswordOtpEmail(email, otp, displayName) {
+    const subject = 'Reset Your Password - Verification Code';
+
+    const text = `
+Hi ${displayName},
+
+Your password reset verification code is: ${otp}
+
+This code is valid for 10 minutes.
+
+If you did not request a password reset, ignore this email.
+    `;
+
+    const html = `
+      <p>Hi <strong>${displayName}</strong>,</p>
+      <p>Your password reset verification code is:</p>
+      <h2>${otp}</h2>
+      <p>This code is valid for <strong>10 minutes</strong>.</p>
+      <p>If you did not request a password reset, ignore this email.</p>
+    `;
+
+    return this.sendMail({ to: email, subject, text, html });
+  }
 }
 
 export const emailService = new EmailService();

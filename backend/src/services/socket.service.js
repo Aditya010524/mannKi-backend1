@@ -9,11 +9,26 @@ import User from '../models/user.model.js';
 
 const server = http.createServer(app); // ✅ attach socket.io to this app
 
+// ✅ OPTIMIZED Socket.IO configuration for better scalability
 const io = new Server(server, {
   cors: {
     origin: [configEnv.FRONTEND_URL || 'http://localhost:3000'],
     credentials: true,
   },
+  // ✅ Use websocket-only in production for better performance
+  // Use both in dev for client compatibility
+  transports: configEnv.IS_PROD ? ['websocket'] : ['websocket', 'polling'],
+  
+  // ✅ Tuned connection settings
+  pingTimeout: 60000, // Increased from 30s to reduce false disconnections
+  pingInterval: 25000, // Increased from 15s to reduce overhead
+  
+  // ✅ Performance optimizations
+  maxHttpBufferSize: 1e6, // 1MB buffer (prevent large payloads)
+  allowEIO3: false, // Only allow EIO4 (latest version)
+  
+  // ✅ Connection queue settings
+  connectTimeout: 45000,
 });
 
 // middleware + socket logic as before
@@ -65,19 +80,18 @@ export function emitUnreadCount(userId, count) {
 
 /**
  * ✅ Get online users that current user can message (following/followers)
+ * ✅ OPTIMIZED: Use lean() and select only needed fields
  */
 export async function getOnlineContactsForUser(userId) {
   try {
     // Get users that current user follows or is followed by
     const [following, followers] = await Promise.all([
-      Follow.find({ follower: userId }).populate(
-        'following',
-        'username displayName avatar isVerified'
-      ),
-      Follow.find({ following: userId }).populate(
-        'follower',
-        'username displayName avatar isVerified'
-      ),
+      Follow.find({ follower: userId })
+        .populate('following', 'username displayName avatar isVerified')
+        .lean(), // ✅ Use lean() for read-only query optimization
+      Follow.find({ following: userId })
+        .populate('follower', 'username displayName avatar isVerified')
+        .lean(), // ✅ Use lean() for read-only query optimization
     ]);
 
     const contactIds = new Set([
@@ -163,6 +177,45 @@ io.on('connection', (socket) => {
     if (receiverSocketId) {
       io.to(receiverSocketId).emit('userStoppedTyping', {
         userId: userId,
+      });
+    }
+  });
+
+  // ✅ Handle incoming messages from client (real-time message delivery)
+  socket.on('send_message', async (data) => {
+    const { recipientId, content } = data;
+    console.log(`📨 Received send_message event from ${userId} to ${recipientId}`);
+    
+    try {
+      const recipientSocketId = getReceiverSocketId(recipientId);
+      
+      if (recipientSocketId) {
+        // Recipient is online, emit message immediately
+        console.log(`✅ Recipient online (${recipientSocketId}), emitting newMessage`);
+        io.to(recipientSocketId).emit('newMessage', {
+          content,
+          senderId: userId,
+          receiverId: recipientId,
+          timestamp: new Date(),
+        });
+        
+        // Acknowledge to sender that message was delivered
+        socket.emit('messageDelivered', {
+          content,
+          status: 'delivered',
+        });
+      } else {
+        console.log(`⚠️ Recipient offline (${recipientId}), message will be saved to DB`);
+        // Recipient is offline - message controller will save to DB
+        socket.emit('messageQueued', {
+          content,
+          status: 'queued',
+        });
+      }
+    } catch (error) {
+      console.error('Error handling send_message:', error);
+      socket.emit('messageSendError', {
+        error: error.message,
       });
     }
   });

@@ -144,7 +144,10 @@ io.on('connection', (socket) => {
 
   // ✅ Send online contacts to newly connected user
   getOnlineContactsForUser(userId).then((onlineContacts) => {
+    console.log(`✅ Emitting onlineContacts to user ${userId}:`, onlineContacts.length);
     socket.emit('onlineContacts', onlineContacts);
+  }).catch((err) => {
+    console.error(`❌ Error getting online contacts for ${userId}:`, err);
   });
 
   // ✅ Notify contacts that this user is now online

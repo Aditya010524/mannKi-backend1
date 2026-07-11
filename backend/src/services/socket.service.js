@@ -12,12 +12,12 @@ const server = http.createServer(app); // ✅ attach socket.io to this app
 // ✅ OPTIMIZED Socket.IO configuration for better scalability
 const io = new Server(server, {
   cors: {
-    origin: [configEnv.FRONTEND_URL || 'http://localhost:3000'],
+    origin: '*', // Allow all origins (or restrict to specific domains)
     credentials: true,
   },
-  // ✅ Use websocket-only in production for better performance
-  // Use both in dev for client compatibility
-  transports: configEnv.IS_PROD ? ['websocket'] : ['websocket', 'polling'],
+  // ✅ Support both websocket and polling for better compatibility
+  // Mobile (React Native) sometimes needs polling as fallback
+  transports: ['websocket', 'polling'],
   
   // ✅ Tuned connection settings
   pingTimeout: 60000, // Increased from 30s to reduce false disconnections

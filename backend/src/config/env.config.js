@@ -11,9 +11,10 @@ console.log(`🔧 [ENV LOADER] NODE_ENV: ${nodeEnv}`);
 console.log(`🔧 [ENV LOADER] Loading env file: ${envFile}`);
 
 const loadResult = config({ path: path.resolve(process.cwd(), envFile) });
-console.log(`🔧 [ENV LOADER] Config loaded: ${loadResult.error ? '❌ ERROR' : '✅ SUCCESS'}`);
+console.log(`🔧 [ENV LOADER] Config loaded: ${loadResult.error ? '⚠️  WARN (env file not found, using process.env)' : '✅ SUCCESS'}`);
 if (loadResult.error) {
-  console.error(`🔧 [ENV LOADER] Error: ${loadResult.error.message}`);
+  console.warn(`🔧 [ENV LOADER] Warning: ${loadResult.error.message}`);
+  console.warn('🔧 [ENV LOADER] Proceeding with environment variables from platform');
 }
 
 // Parse and provide safe defaults for environment variables
@@ -35,9 +36,6 @@ const env = {
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
   JWT_REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || '7d',
 
-  // Redis (optional)
-  REDIS_URL: process.env.REDIS_URL || null,
-
   // Email (Brevo)
   BREVO_API_KEY: process.env.BREVO_API_KEY || null,
   FROM_EMAIL: process.env.FROM_EMAIL || null,
@@ -54,6 +52,9 @@ const env = {
   // Rate limiting
   RATE_LIMIT_WINDOW: parseInt(process.env.RATE_LIMIT_WINDOW, 10) || 15,
   RATE_LIMIT_MAX: parseInt(process.env.RATE_LIMIT_MAX, 10) || 100,
+
+  // Clustering
+  WORKER_COUNT: process.env.WORKER_COUNT ? parseInt(process.env.WORKER_COUNT, 10) : null,
 
   // Security
   BCRYPT_ROUNDS: parseInt(process.env.BCRYPT_ROUNDS, 10) || 12,
@@ -143,7 +144,6 @@ const configEnv = {
 
   DEFAULT_PROFILE_URL: env.DEFAULT_PROFILE_URL,
   DEFAULT_COVER_URL: env.DEFAULT_COVER_URL,
-  REDIS_URL: env.REDIS_URL,
 };
 
 export default configEnv;

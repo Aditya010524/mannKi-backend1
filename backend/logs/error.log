@@ -1924,3 +1924,115 @@
     at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
     at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
     at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-11 01:50:43 [ERROR]: ValidationError: AuthToken validation failed: type: `forgot_password_otp` is not a valid enum value for path `type`.
+    at Document.invalidate (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\mongoose\lib\document.js:3358:32)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\mongoose\lib\document.js:3119:17
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\mongoose\lib\schemaType.js:1416:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-07-11 01:50:43 [ERROR]: Error: Could not create password reset code
+    at ApiError.internal (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:52:12)
+    at AuthService.createForgotPasswordOtp (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/auth.service.js:398:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:229:31
+2026-07-11 01:53:05 [ERROR]: Error: Invalid or expired verification code
+    at ApiError.badRequest (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:20:12)
+    at AuthService.verifyForgotPasswordOtp (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/services/auth.service.js:424:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:256:36
+2026-07-11 01:56:05 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:131:22
+2026-07-11 01:56:05 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-11 02:03:39 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:131:22
+2026-07-11 02:03:39 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-11 02:05:01 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:131:22
+2026-07-11 02:05:01 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-11 02:05:07 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:131:22
+2026-07-11 02:05:07 [ERROR]: Error: Refresh token is required
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:186:22
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/async-handler.js:6:19
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:28:5
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+2026-07-11 02:16:45 [ERROR]: Error: Validation failed
+    at ApiError.validation (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:40:19)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:24:22
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/auth.middleware.js:60:3
+2026-07-11 03:01:05 [ERROR]: Error: Validation failed
+    at ApiError.validation (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:40:19)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:24:22
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/auth.middleware.js:60:3
+2026-07-11 03:01:09 [ERROR]: Error: Validation failed
+    at ApiError.validation (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:40:19)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/validation.middleware.js:24:22
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Abhishek\Desktop\Project\backend\backend\node_modules\express\lib\router\index.js:280:10)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/middleware/auth.middleware.js:60:3
+2026-07-11 03:09:30 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:125:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-07-11 03:09:30 [ERROR]: Error: Invalid credentials
+    at ApiError.unauthorized (file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/utils/api-error.js:24:12)
+    at file:///C:/Users/Abhishek/Desktop/Project/backend/backend/src/controllers/auth.controller.js:125:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

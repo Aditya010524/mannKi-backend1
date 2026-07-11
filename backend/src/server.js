@@ -6,9 +6,13 @@ import logger from './config/logger.config.js';
 import { server, io } from './services/socket.service.js'; // ✅ import io too
 
 const PORT = configEnv.PORT || 3000;
-const numCPUs = os.cpus().length;
 
-// ✅ CLUSTERING: Enable multi-process for better scalability
+// ✅ LIGHTWEIGHT CLUSTERING FOR RAILWAY HOBBY TIER (512MB Memory Limit)
+// Cap at maximum 2 workers to stay safely within Railway's memory constraints
+// Perfect for 10-100 student users with self-healing redundancy during demos
+const WORKER_COUNT = Math.min(os.cpus().length, 2);
+
+// ✅ CLUSTERING: Enable multi-process for better scalability (production only)
 const enableClustering = configEnv.IS_PROD; // Enable in production only
 
 if (enableClustering && cluster.isPrimary) {
@@ -16,24 +20,30 @@ if (enableClustering && cluster.isPrimary) {
   // MASTER PROCESS
   // ==========================================
   console.log(`🚀 Master process ${process.pid} starting clustering...`);
-  console.log(`🔄 Spawning ${numCPUs} worker processes...`);
+  console.log(`🔄 Spawning ${WORKER_COUNT} worker processes (Railway-optimized)...`);
 
-  // Fork workers
-  for (let i = 0; i < numCPUs; i++) {
+  // Fork lightweight workers
+  for (let i = 0; i < WORKER_COUNT; i++) {
     cluster.fork();
   }
 
-  // Handle worker exit
+  // ✅ Self-healing: auto-restart worker if it crashes during demo/grading
   cluster.on('exit', (worker, code, signal) => {
     if (signal) {
-      logger.info(`Worker ${worker.process.pid} was killed by signal: ${signal}`);
+      console.error(`❌ Worker ${worker.process.pid} was killed by signal: ${signal}`);
+      logger.warn(`Worker ${worker.process.pid} killed by signal: ${signal}`);
     } else if (code !== 0) {
+      console.error(`❌ Worker ${worker.process.pid} crashed with code: ${code}`);
       logger.warn(`Worker ${worker.process.pid} exited with error code: ${code}`);
-      // Respawn worker on unexpected exit
-      logger.info(`Respawning worker...`);
-      cluster.fork();
     } else {
+      console.log(`✅ Worker ${worker.process.pid} exited normally`);
       logger.info(`Worker ${worker.process.pid} exited successfully`);
+    }
+
+    // Respawn worker unless shutting down
+    if (!process.exitingCluster) {
+      console.log(`🔄 Respawning replacement worker...`);
+      cluster.fork();
     }
   });
 
@@ -41,6 +51,7 @@ if (enableClustering && cluster.isPrimary) {
   const gracefulShutdownMaster = (signal) => {
     console.log(`\n📤 ${signal} received, shutting down master gracefully...`);
     logger.info(`${signal} received on master, shutting down`);
+    process.exitingCluster = true;
 
     // Disconnect all workers
     for (const id in cluster.workers) {
@@ -67,7 +78,7 @@ if (enableClustering && cluster.isPrimary) {
         console.log(`🌍 Environment: ${configEnv.NODE_ENV}`);
         console.log(`🔗 Server: http://localhost:${PORT}`);
         console.log(`📡 API: http://localhost:${PORT}${configEnv.API_PREFIX}`);
-        console.log(`⚙️  Clustering: ${enableClustering ? `Enabled (${numCPUs} workers)` : 'Disabled'}`);
+        console.log(`⚙️  Clustering: ${enableClustering ? `Enabled (${WORKER_COUNT} workers - Railway optimized)` : 'Disabled'}`);
         console.log('🔌 Real-time Chat: ACTIVE');
         console.log('🚀 =======================================');
         logger.info(`Server with Socket.IO started on port ${PORT} (PID: ${process.pid})`);
